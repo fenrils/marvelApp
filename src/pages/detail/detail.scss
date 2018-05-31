@@ -1,0 +1,34 @@
+page-detail {
+    .image-hero {
+        width: 100%;
+    }
+    .card-background-page {
+        .comics {
+            text-align: center;
+            width: 25%;
+            float: left;
+            img {
+                height: 120px;
+            }
+        }
+        .card-title-md {
+            display: block;
+            font-size: 2.4rem;
+            line-height: 1.2;
+            color: rgb(66, 12, 12);
+            margin: 0;
+            padding:0;
+        }
+        .card-md {
+            border-radius: 0px;
+            margin: 4px;
+            width: auto;
+        }
+        .card-title {
+            
+            font-size: 12px;
+            font-weight: bold;
+            color: rgb(153, 8, 8);
+        }
+    }
+}

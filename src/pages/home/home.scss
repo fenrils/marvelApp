@@ -1,0 +1,49 @@
+.card-background-page{
+    background-color: black !important;
+}
+page-home {
+    
+    .card-background-page {
+        .hero {
+            text-align: center;
+            width: 50%;
+            float: left;
+            img {
+                height: 170px;
+            }
+        }
+        .card-title-md {
+            display: block;
+            font-size: 2.4rem;
+            line-height: 1.2;
+            color: rgb(66, 12, 12);
+            margin: 0;
+            padding:0;
+        }
+        .card-md {
+            border-radius: 0px;
+            margin: 4px;
+            width: auto;
+        }
+        
+          ion-card {
+            position: relative;
+            text-align: center;
+          }
+        
+          .card-title {
+
+            font-size: 14px;
+            font-weight: bold;
+            color: rgb(78, 4, 4);
+          }
+        
+          .card-subtitle {
+            font-size: 9px;
+            position: absolute;
+            top: 52%;
+            color: #fff;
+          }
+        
+        }
+}

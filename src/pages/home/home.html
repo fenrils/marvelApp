@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="card-background-page">
+<ion-searchbar (ionInput)="getHero($event)"></ion-searchbar>
+    
+  <div class="hero" *ngFor="let hero of characters">
+    <ion-card (click)="getDescription(hero.id)">
+      <img src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}">
+      <ion-card-content>
+        <ion-card-title>
+          {{hero.name | slice:0:15}}{{hero.name.length > 15 ? '...' : ''}}
+        </ion-card-title>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
