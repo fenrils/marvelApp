@@ -44,6 +44,8 @@ export class MarvelApiProvider {
 
   loadComics(item) {
     this.comicsData = [];
+    var fisicPrice = ""
+    var digitalPrice = ""
     item.forEach(element => {
       try {
         var timestamp = Number(new Date());
@@ -51,7 +53,16 @@ export class MarvelApiProvider {
         this.http.get(element.resourceURI + `?ts=${timestamp}&apikey=7a71cd5bb55e929d556056fe3889d2ee&hash=${hash}`)
           .map(res => res.json())
           .subscribe(data => {
-            this.comicsData.push({ name: data.data.results[0].title, thumnails: data.data.results[0].thumbnail });
+            console.log(data);
+            if (data.data.results[0].prices.length > 1) {
+               fisicPrice = data.data.results[0].prices[0].price
+               digitalPrice = data.data.results[0].prices[1].price
+            } else {
+               fisicPrice = data.data.results[0].prices[0].price
+               digitalPrice = ""
+            }
+           
+            this.comicsData.push({ name: data.data.results[0].title, thumnails: data.data.results[0].thumbnail, fisicPrice:fisicPrice, digitalPrice:digitalPrice, url:data.data.results[0].urls[0].url });
           });
       } catch (error) {
         console.log(error);

@@ -25678,6 +25678,12 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-detail .card-title {
+  display: block;
+  font-size: 18px;
+  color: #420c0c;
+}
+
 page-detail .image-hero {
   width: 100%;
 }
@@ -25690,15 +25696,6 @@ page-detail .card-background-page .comics {
 
 page-detail .card-background-page .comics img {
   height: 120px;
-}
-
-page-detail .card-background-page .card-title-md {
-  display: block;
-  font-size: 2.4rem;
-  line-height: 1.2;
-  color: #420c0c;
-  margin: 0;
-  padding: 0;
 }
 
 page-detail .card-background-page .card-md {

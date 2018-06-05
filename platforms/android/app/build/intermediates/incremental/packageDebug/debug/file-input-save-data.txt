@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue May 22 18:04:30 CEST 2018
+#Tue Jun 05 10:55:52 CEST 2018
 5.base=/Users/ngalvanh/Documents/GitHub/marvelApp/platforms/android/app/build/intermediates/assets/debug
 42.base=/Users/ngalvanh/Documents/GitHub/marvelApp/platforms/android/app/build/intermediates/assets/debug
 32.set=ASSET

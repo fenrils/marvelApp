@@ -29,14 +29,18 @@
   <ion-item text-wrap>
     <h2>Comics</h2>
     <div class="comics" *ngFor="let comic of comics">
-      <ion-card>
-        <img src="{{comic.thumnails.path}}.{{comic.thumnails.extension}}">
-        <ion-card-content>
-          <ion-card-title>
-            {{comic.name | slice:0:15}}{{comic.name.length > 15 ? '...' : ''}}
-          </ion-card-title>
-        </ion-card-content>
-      </ion-card>
+      <a href="{{comic.url}}">
+        <ion-card>
+          <img src="{{comic.thumnails.path}}.{{comic.thumnails.extension}}">
+          <ion-card-content>
+            <ion-card-title>
+              {{comic.name | slice:0:25}}{{comic.name.length > 25 ? '...' : ''}}
+            </ion-card-title>
+            <p><b>Físico:</b> {{comic.fisicPrice}} $ </p>
+            <p><b>Digital:</b> {{comic.digitalPrice}} $ </p>
+          </ion-card-content>
+        </ion-card>
+      </a>
     </div>
   </ion-item>
   <ion-item text-wrap>

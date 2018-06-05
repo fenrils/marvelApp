@@ -36,15 +36,15 @@ var DetailPage = /** @class */ (function () {
     }
     DetailPage.prototype.ionViewDidLoad = function () {
         this.comics = this.marvel.comicsData;
+        console.log(this.comics);
     };
     DetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-detail',template:/*ion-inline-start:"/Users/ngalvanh/Documents/GitHub/marvelApp/src/pages/detail/detail.html"*/'<!--\n  Generated template for the DetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{heroData.data[0].name}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-item class=\'image-hero\'>\n    <img src="{{heroData.data[0].thumbnail.path}}.{{heroData.data[0].thumbnail.extension}}">\n  </ion-item>\n  <ion-item>\n    <h2>Nombre</h2>\n    <p>{{heroData.data[0].name}}</p>\n  </ion-item>\n\n  <ion-item text-wrap>\n    <h2>Descripción</h2>\n    <p>{{heroData.data[0].description}}</p>\n  </ion-item>\n  <ion-item text-wrap>\n    <h2>Comics</h2>\n    <div class="comics" *ngFor="let comic of comics">\n      <ion-card>\n        <img src="{{comic.thumnails.path}}.{{comic.thumnails.extension}}">\n        <ion-card-content>\n          <ion-card-title>\n            {{comic.name | slice:0:15}}{{comic.name.length > 15 ? \'...\' : \'\'}}\n          </ion-card-title>\n        </ion-card-content>\n      </ion-card>\n    </div>\n  </ion-item>\n  <ion-item text-wrap>\n    <h2>Links</h2>\n    <hr>\n    <div class="links" *ngFor="let item of heroData.data[0].urls">\n      <p>\n        <a href="item.url">{{item.type}}</a>\n      </p>\n    </div>\n  </ion-item>\n\n\n</ion-content>'/*ion-inline-end:"/Users/ngalvanh/Documents/GitHub/marvelApp/src/pages/detail/detail.html"*/,
+            selector: 'page-detail',template:/*ion-inline-start:"/Users/ngalvanh/Documents/GitHub/marvelApp/src/pages/detail/detail.html"*/'<!--\n  Generated template for the DetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{heroData.data[0].name}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-item class=\'image-hero\'>\n    <img src="{{heroData.data[0].thumbnail.path}}.{{heroData.data[0].thumbnail.extension}}">\n  </ion-item>\n  <ion-item>\n    <h2>Nombre</h2>\n    <p>{{heroData.data[0].name}}</p>\n  </ion-item>\n\n  <ion-item text-wrap>\n    <h2>Descripción</h2>\n    <p>{{heroData.data[0].description}}</p>\n  </ion-item>\n  <ion-item text-wrap>\n    <h2>Comics</h2>\n    <div class="comics" *ngFor="let comic of comics">\n      <a href="{{comic.url}}">\n        <ion-card>\n          <img src="{{comic.thumnails.path}}.{{comic.thumnails.extension}}">\n          <ion-card-content>\n            <ion-card-title>\n              {{comic.name | slice:0:25}}{{comic.name.length > 25 ? \'...\' : \'\'}}\n            </ion-card-title>\n            <p><b>Físico:</b> {{comic.fisicPrice}} $ </p>\n            <p><b>Digital:</b> {{comic.digitalPrice}} $ </p>\n          </ion-card-content>\n        </ion-card>\n      </a>\n    </div>\n  </ion-item>\n  <ion-item text-wrap>\n    <h2>Links</h2>\n    <hr>\n    <div class="links" *ngFor="let item of heroData.data[0].urls">\n      <p>\n        <a href="item.url">{{item.type}}</a>\n      </p>\n    </div>\n  </ion-item>\n\n\n</ion-content>'/*ion-inline-end:"/Users/ngalvanh/Documents/GitHub/marvelApp/src/pages/detail/detail.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_marvel_api_marvel_api__["a" /* MarvelApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_marvel_api_marvel_api__["a" /* MarvelApiProvider */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_marvel_api_marvel_api__["a" /* MarvelApiProvider */]])
     ], DetailPage);
     return DetailPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=detail.js.map
@@ -449,6 +449,8 @@ var MarvelApiProvider = /** @class */ (function () {
     MarvelApiProvider.prototype.loadComics = function (item) {
         var _this = this;
         this.comicsData = [];
+        var fisicPrice = "";
+        var digitalPrice = "";
         item.forEach(function (element) {
             try {
                 var timestamp = Number(new Date());
@@ -456,7 +458,16 @@ var MarvelApiProvider = /** @class */ (function () {
                 _this.http.get(element.resourceURI + ("?ts=" + timestamp + "&apikey=7a71cd5bb55e929d556056fe3889d2ee&hash=" + hash))
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
-                    _this.comicsData.push({ name: data.data.results[0].title, thumnails: data.data.results[0].thumbnail });
+                    console.log(data);
+                    if (data.data.results[0].prices.length > 1) {
+                        fisicPrice = data.data.results[0].prices[0].price;
+                        digitalPrice = data.data.results[0].prices[1].price;
+                    }
+                    else {
+                        fisicPrice = data.data.results[0].prices[0].price;
+                        digitalPrice = "";
+                    }
+                    _this.comicsData.push({ name: data.data.results[0].title, thumnails: data.data.results[0].thumbnail, fisicPrice: fisicPrice, digitalPrice: digitalPrice, url: data.data.results[0].urls[0].url });
                 });
             }
             catch (error) {
@@ -466,10 +477,9 @@ var MarvelApiProvider = /** @class */ (function () {
     };
     MarvelApiProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], MarvelApiProvider);
     return MarvelApiProvider;
-    var _a;
 }());
 
 //# sourceMappingURL=marvel-api.js.map

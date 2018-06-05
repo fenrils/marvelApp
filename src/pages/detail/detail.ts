@@ -26,6 +26,7 @@ export class DetailPage {
 
   ionViewDidLoad() {
     this.comics = this.marvel.comicsData;
+    console.log(this.comics);
   }
 
 }

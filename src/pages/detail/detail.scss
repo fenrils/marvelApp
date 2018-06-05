@@ -1,4 +1,10 @@
 page-detail {
+    .card-title {
+        display: block;
+        font-size: 18px;
+        color: rgb(66, 12, 12);
+
+    }
     .image-hero {
         width: 100%;
     }
@@ -11,14 +17,7 @@ page-detail {
                 height: 120px;
             }
         }
-        .card-title-md {
-            display: block;
-            font-size: 2.4rem;
-            line-height: 1.2;
-            color: rgb(66, 12, 12);
-            margin: 0;
-            padding:0;
-        }
+        
         .card-md {
             border-radius: 0px;
             margin: 4px;
